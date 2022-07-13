@@ -1,18 +1,25 @@
-import { GETCHARACTERS } from '../actions/type'
+import { GETCHARACTERS, LOADING } from '../actions/type'
 
 const initialState = {
-    characters: []
+  characters: [],
+  loading: false,
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
-    switch (action.type) {
-        case GETCHARACTERS:
-            return {
-                ...state,
-                characters: action.payload
-            }
-        default:
-            return state
-    }
+  switch (action.type) {
+    case GETCHARACTERS:
+      return {
+        ...state,
+        characters: action.payload,
+        loading: false,
+      }
+    case LOADING:
+      return {
+        ...state,
+        loading: true
+      }
+    default:
+      return state
+  }
 }

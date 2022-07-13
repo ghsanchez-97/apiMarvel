@@ -1,16 +1,6 @@
-import { useCallback, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { fetchCharacters } from 'redux/actions/characters'
+import { memo } from 'react'
 
-const HomeView = ({ fetchCharacters }) => {
-    const characters = useCallback(async() => {
-        await fetchCharacters()
-    }, [fetchCharacters])
-
-    useEffect(() => {
-        characters()
-    }, [characters])
-
+const HomeView = () => {
   return (
     <div>
       <h1>Hello World</h1>
@@ -18,4 +8,4 @@ const HomeView = ({ fetchCharacters }) => {
   )
 }
 
-export default connect(null, { fetchCharacters })(HomeView)
+export default memo(HomeView)

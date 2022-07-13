@@ -1,0 +1,57 @@
+// body {
+//   background: #000000;
+// }
+
+.loader {
+  height: 100px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+
+  span {
+    animation: spin 2s ease infinite;
+    border-radius: 50%;
+    border: 0;
+    height: 40%;
+    margin: 0;
+    position: absolute;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    width: 40%;
+  }
+
+  :first-child {
+    background: #216ad6;
+    animation-delay: -1.5s;
+  }
+  :nth-child(2) {
+    background: #ffcb00;
+    animation-delay: -1s;
+  }
+  :nth-child(3) {
+    background: #ff0000;
+    animation-delay: -0.5s;
+  }
+  :nth-child(4) {
+    background: #00ff00;
+    animation-delay: 0;
+  }
+  @keyframes spin {
+    0% {
+      transform: translate(0) scale(0);
+    }
+    25% {
+      transform: translate(200%) scale(1.5);
+    }
+    50% {
+      transform: translate(200%, 200%) scale(0);
+    }
+    75% {
+      transform: translate(0, 200%) scale(1.5);
+    }
+    100% {
+      transform: translate(0) scale(0);
+    }
+  }
+}

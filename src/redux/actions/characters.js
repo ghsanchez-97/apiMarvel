@@ -1,9 +1,10 @@
 // TYPES
-import { GETCHARACTERS } from './type'
+import { GETCHARACTERS, LOADING } from './type'
 // SERVICES
 import { getCharacters } from 'services/api.services'
 
 export const fetchCharacters = () => async (dispatch) => {
+  dispatch({ type: LOADING })
   try {
     const { data, status, statusText } = await getCharacters()
     if (status === 200) {

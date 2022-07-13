@@ -1,16 +1,21 @@
-// import { useEffect } from 'react'
+// Import react-router-dom
+import { Routes, Route } from 'react-router-dom'
 // Import Redux
 import { Provider } from 'react-redux'
 import store from 'redux/store'
-import { HomeView } from 'view'
+// Component
+import { NavbarComponents } from 'components'
+// View
+import { HomeView, CharactersView } from 'view'
 
 const App = () => {
   return (
     <Provider store={store}>
-      {/* <div>
-        <h1>Hello World</h1>
-      </div> */}
-      <HomeView />
+      <NavbarComponents />
+      <Routes>
+        <Route path='/' element={<HomeView />} />
+        <Route path='/characters' element={<CharactersView />} />
+      </Routes>
     </Provider>
   )
 }

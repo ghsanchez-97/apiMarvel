@@ -3,12 +3,11 @@ import { useCallback, useEffect } from 'react'
 // Redux
 import { connect } from 'react-redux'
 import { fetchCharacters } from 'redux/actions/characters'
-// Component
-import { Loader } from 'components'
 // Styles
 import './character.scss'
 
-const CharactersView = ({ fetchCharacters, loading }) => {
+const CharactersView = ({ fetchCharacters }) => {
+
     const characters = useCallback(async() => {
         await fetchCharacters()
     }, [fetchCharacters])
@@ -17,10 +16,6 @@ const CharactersView = ({ fetchCharacters, loading }) => {
         characters()
     }, [characters])
 
-    if(loading) {
-        <Loader />
-    }
-
     return (
         <div>
             <h1>Characters</h1>
@@ -28,7 +23,4 @@ const CharactersView = ({ fetchCharacters, loading }) => {
     )
 }
 
-const mapDispatchToProps = (state) => ({
-    loading: state.characters.loading,
-})
-export default connect(mapDispatchToProps, { fetchCharacters })(CharactersView)
+export default connect(null, { fetchCharacters })(CharactersView)

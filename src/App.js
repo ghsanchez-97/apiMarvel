@@ -6,15 +6,28 @@ import store from 'redux/store'
 // Component
 import { NavbarComponents } from 'components'
 // View
-import { HomeView, CharactersView } from 'view'
+import {
+  HomeView,
+  CharactersView,
+  ComicsView,
+  CreatorsView,
+  EventsView,
+  HistoryView,
+  SeriesView,
+} from 'view'
 
 const App = () => {
   return (
     <Provider store={store}>
       <NavbarComponents />
       <Routes>
-        <Route path='/' element={<HomeView />} />
-        <Route path='/characters' element={<CharactersView />} />
+        <Route  exact path='/' element={<HomeView />} />
+        <Route  exact path='/characters' element={<CharactersView />} />
+        <Route  exact path='/comics' element={<ComicsView />} />
+        <Route  exact path='/creator' element={<CreatorsView />} />
+        <Route  exact path='/events' element={<EventsView />} />
+        <Route  exact path='/series' element={<SeriesView />} />
+        <Route  exact path='/stories' element={<HistoryView />} />
       </Routes>
     </Provider>
   )

@@ -3,22 +3,25 @@
 // }
 
 .loader {
-  height: 100px;
+  height: 100%;
   left: 50%;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 100px;
+  width: 100%;
+  background-color: rgba(2, 0, 36, 0.7);
 
   span {
     animation: spin 2s ease infinite;
     border-radius: 50%;
     border: 0;
-    height: 40%;
+    height: 10%;
     margin: 0;
     position: absolute;
     transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    width: 40%;
+    width: 10%;
+    left: 35%;
+    top: 30%;
   }
 
   :first-child {

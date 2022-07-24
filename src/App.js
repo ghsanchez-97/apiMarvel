@@ -1,9 +1,10 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 // Import react-router-dom
 import { Routes, Route } from 'react-router-dom'
 // Import Redux
 import { Provider } from 'react-redux'
 import store from 'redux/store'
+import useLoader from './hook/useLoader.hook'
 // Component
 import { NavbarComponents, Loader } from 'components'
 // View
@@ -16,6 +17,14 @@ const SeriesView = lazy(() => import('view/Series/series.view'))
 const HistoryView = lazy(() => import('view/History/history.view'))
 
 const App = () => {
+  const [{ render }, enableLoader, disableLoader] =
+    useLoader(<Loader />)
+  useEffect(() => {
+    enableLoader()
+    return () => {
+      disableLoader()
+    }
+  })
   return (
     <Suspense fallback={<Loader />}>
       <Provider store={store}>
@@ -30,6 +39,7 @@ const App = () => {
           <Route exact path='/stories' element={<HistoryView />} />
         </Routes>
       </Provider>
+      {render()}
     </Suspense>
   )
 }

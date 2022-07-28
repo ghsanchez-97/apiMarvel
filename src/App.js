@@ -9,7 +9,7 @@ import useLoader from './hook/useLoader.hook'
 import { NavbarComponents, Loader } from 'components'
 // View
 const HomeView = lazy(() => import('view/home/home.view'))
-const CharactersView = lazy(() => import('view/characters/characters.view'))
+const CharactersView = lazy(() => import('view/characters/charactersPage.view'))
 const ComicsView = lazy(() => import('view/Comics/comics.view'))
 const CreatorsView = lazy(() => import('view/Creators/creators.view'))
 const EventsView = lazy(() => import('view/Events/events.view'))

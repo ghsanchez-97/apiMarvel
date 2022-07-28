@@ -1,32 +1,41 @@
 // React
-import { useCallback, useEffect } from 'react'
-// 
-import useLoader from 'hook/useLoader.hook'
+// import { Fragment } from 'react'
 // Redux
 import { connect } from 'react-redux'
-import { fetchCharacters } from 'redux/actions/characters'
 // Styles
 import './character.scss'
 
-const CharactersView = ({ fetchCharacters }) => {
+const CharactersView = ({ characters }) => {
+  console.log('data', characters)
 
-    const [ {show, hide} ]  = useLoader()
-
-    const characters = useCallback(async() => {
-        show()
-        await fetchCharacters()
-        hide()
-    }, [fetchCharacters])
-
-    useEffect(() => {
-        characters()
-    }, [characters])
-
-    return (
-        <div>
-            <h1>Characters</h1>
-        </div>
-    )
+  return (
+    // <Fragment>
+    <div className='characters'>
+      <div className='characters__title'>
+        <h1>Personajes</h1>
+      </div>
+      <div className='characters__list'>
+        {characters?.map((character, index) => (
+          <div className='characters__list__hero' key={`characters__${index}`}>
+            <div className='characters__list__hero__image'>
+              <img
+                src={`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`}
+                alt={character?.name}
+              />
+            </div>
+            <div className='characters__list__hero__name'>
+              <h2>{character?.name}</h2>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    // </Fragment>
+  )
 }
 
-export default connect(null, { fetchCharacters })(CharactersView)
+const mapStateToProps = (state) => ({
+  characters: state.characters.characters.results,
+})
+
+export default connect(mapStateToProps)(CharactersView)

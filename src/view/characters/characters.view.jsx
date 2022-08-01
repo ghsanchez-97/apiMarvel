@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import './character.scss'
 
 const CharactersView = ({ characters }) => {
-  console.log('data', characters)
 
   return (
     // <Fragment>
@@ -18,10 +17,12 @@ const CharactersView = ({ characters }) => {
         {characters?.map((character, index) => (
           <div className='characters__list__hero' key={`characters__${index}`}>
             <div className='characters__list__hero__image'>
+              <div className='pulse'></div>
               <img
                 src={`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`}
                 alt={character?.name}
               />
+              
             </div>
             <div className='characters__list__hero__name'>
               <h2>{character?.name}</h2>

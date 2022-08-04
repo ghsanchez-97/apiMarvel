@@ -10,15 +10,14 @@ import { NavbarComponents, Loader } from 'components'
 // View
 const HomeView = lazy(() => import('view/home/home.view'))
 const CharactersView = lazy(() => import('view/characters/charactersPage.view'))
-const ComicsView = lazy(() => import('view/Comics/comics.view'))
-const CreatorsView = lazy(() => import('view/Creators/creators.view'))
-const EventsView = lazy(() => import('view/Events/events.view'))
-const SeriesView = lazy(() => import('view/Series/series.view'))
-const HistoryView = lazy(() => import('view/History/history.view'))
+const ComicsView = lazy(() => import('view/Comics/comicsPage.view'))
+const CreatorsView = lazy(() => import('view/Creators/creatorsPages.view'))
+const EventsView = lazy(() => import('view/Events/eventsPage.view'))
+const SeriesView = lazy(() => import('view/Series/seriesPages.view'))
+const HistoryView = lazy(() => import('view/History/historyPages.view'))
 
 const App = () => {
-  const [{ render }, enableLoader, disableLoader] =
-    useLoader(<Loader />)
+  const [{ render }, enableLoader, disableLoader] = useLoader(<Loader />)
   useEffect(() => {
     enableLoader()
     return () => {

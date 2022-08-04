@@ -1,25 +1,35 @@
-import { useCallback, useEffect } from 'react'
+// import { useCallback, useEffect } from 'react'
 // redux
 import { connect } from 'react-redux'
-import { getStorie } from 'redux/actions/stories'
+// Assets
+import Hero  from 'assets/img/hero.jpg'
 // Styles
 import './history.scss'
 
-const HistoryView = ({ getStorie }) => {
-
-    const stories = useCallback(async () => {
-        await getStorie()
-    }, [getStorie])
-
-    useEffect(() => {
-        stories()
-    }, [stories])
+const HistoryView = ({ stories }) => {
+  console.log('stories', stories)
 
   return (
     <div className='history'>
-      <h1>History</h1>
+      {stories?.map((story, index) => (
+        <div className='history__contains' key={`history__contains__${index}`}>
+          <div className='history__contains__image'>
+            {story?.thumbnail != null ? <img
+              src={`${story?.thumbnail?.path}.${story?.thumbnail?.extension}`}
+              alt={story?.title}
+            /> : <img src={Hero} alt='hero' />}
+          </div>
+          <div className='history__contains__title'>
+            <h2>{story?.title}</h2>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
 
-export default connect(null, { getStorie })(HistoryView)
+const mapStateToProps = (state) => ({
+  stories: state.stories.stories.results,
+})
+
+export default connect(mapStateToProps)(HistoryView)

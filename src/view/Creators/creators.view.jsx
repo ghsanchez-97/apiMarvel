@@ -1,24 +1,31 @@
-import { useCallback, useEffect } from 'react'
+// import { useCallback, useEffect } from 'react'
 // redux
 import { connect } from 'react-redux'
-import { getCreator } from 'redux/actions/creater'
 // Styles
 import './creator.scss'
 
-const CreatorView = ({ getCreator }) => {
-  const creaters = useCallback(async () => {
-    await getCreator()
-  }, [getCreator])
-
-  useEffect(() => {
-    creaters()
-  }, [creaters])
-
+const CreatorView = ({ creater }) => {
   return (
     <div className='creator'>
-      <h1>Creator</h1>
+      {creater?.map((creator, index) => (
+        <div className='creator__contains' key={`creator__contains__${index}`}>
+          <div className='creator__contains__image'>
+            <img
+              src={`${creator?.thumbnail?.path}.${creator?.thumbnail?.extension}`}
+              alt={creator?.fullName}
+            />
+          </div>
+          <div className='creator__contains__name'>
+            <h2>{creator?.fullName}</h2>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
 
-export default connect(null, { getCreator })(CreatorView)
+const mapStateToProps = (state) => ({
+  creater: state.creater.creater.results,
+})
+
+export default connect(mapStateToProps)(CreatorView)

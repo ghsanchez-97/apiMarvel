@@ -1,24 +1,32 @@
-import { useCallback, useEffect } from 'react'
+// import { useCallback, useEffect } from 'react'
 // redux
 import { connect } from 'react-redux'
-import { getSerie } from 'redux/actions/series'
 // Styles
 import './series.scss'
 
-const SeriesView = ({ getSerie }) => {
-  const series = useCallback(async () => {
-    await getSerie()
-  }, [getSerie])
-
-  useEffect(() => {
-    series()
-  }, [series])
+const SeriesView = ({ series }) => {
 
   return (
     <div className='series'>
-      <h1>Series</h1>
+      {series?.map((serie, index) => (
+        <div className='series__contains' key={`series__contains__${index}`}>
+          <div className='series__contains__image'>
+            <img
+              src={`${serie?.thumbnail?.path}.${serie?.thumbnail?.extension}`}
+              alt={serie?.title}
+            />
+          </div>
+          <div className='series__contains__title'>
+            <h2>{serie?.title}</h2>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
 
-export default connect(null, { getSerie })(SeriesView)
+const mapDispatchToProps = (state) => ({
+  series: state.series.series.results,
+})
+
+export default connect(mapDispatchToProps)(SeriesView)
